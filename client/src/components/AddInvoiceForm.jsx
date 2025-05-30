@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { FaTrash } from "react-icons/fa"; // Import the trash icon
 import { toast } from "react-toastify";
+
+
+const backendUrl = "https://omg-devis-server.onrender.com"
 const AddInvoiceForm = ({ onInvoiceSaved }) => {
   const [formData, setFormData] = useState({
     customerName: "",
@@ -46,7 +49,7 @@ const AddInvoiceForm = ({ onInvoiceSaved }) => {
       const taxAmount = (total * formData.tax) / 100;
       const invoice = { ...formData, total: total + taxAmount };
       const response = await axios.post(
-        `${import.meta.env.VITE_APP_BACKEND_URL}/api/invoices/add`,
+        `${backendUrl}/api/invoices/add`,
         invoice
       );
       console.log(response);

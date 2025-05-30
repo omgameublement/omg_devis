@@ -6,6 +6,7 @@ import { FaRegFilePdf } from "react-icons/fa";
 import { FaTrashCan } from "react-icons/fa6";
 import { toast } from "react-toastify";
 import companyInfo from "../utils/companyInfo.jsx";
+import backendUrl from "./AddInvoiceForm.jsx"
 
 const PastInvoices = () => {
   const [invoices, setInvoices] = useState([]);
@@ -20,7 +21,7 @@ const PastInvoices = () => {
   const fetchInvoices = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_APP_BACKEND_URL}/api/invoices/all`
+        `${backendUrl}/api/invoices/all`
       );
       setInvoices(response.data);
     } catch (err) {
