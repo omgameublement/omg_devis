@@ -34,30 +34,27 @@ const PastInvoices = () => {
     setShowModal(true); // Show the modal
   };
 
-  const deleteInvoice = async () => {
-    setIsLoading(true);
-    try {
-      const response = await axios.delete(
-        backendUrl + "/api/invoices/",
-       { selectedInvoiceId}
-      );
-      setInvoices((prevInvoices) =>
-        prevInvoices.filter((invoice) => invoice._id !== selectedInvoiceId)
-      );
-      console.log(response);
+const deleteInvoice = async () => {
+  setIsLoading(true);
+  try {
+    const response = await axios.delete(`${backendUrl}/api/invoices/${selectedInvoiceId}`);
 
-      setShowModal(false); // Hide the modal
-      if (response.status === 200) {
-        toast.success("Invoice deleted successfully!");
-      }
-    } catch (err) {
-      console.error("Failed to delete invoice", err);
-      toast.error("Failed to delete invoice");
-    } finally {
-      setIsLoading(false);
+    setInvoices((prevInvoices) =>
+      prevInvoices.filter((invoice) => invoice._id !== selectedInvoiceId)
+    );
+
+    setShowModal(false);
+    if (response.status === 200) {
+      toast.success("Invoice deleted successfully!");
     }
-  };
-  
+  } catch (err) {
+    console.error("Failed to delete invoice", err);
+    toast.error("Failed to delete invoice");
+  } finally {
+    setIsLoading(false);
+  }
+};
+
  const downloadPDF = (invoice) => {
 
 console.log("Company Info:", companyInfo); // ← à ajouter ici
