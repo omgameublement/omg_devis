@@ -21,7 +21,7 @@ const PastInvoices = () => {
   const fetchInvoices = async () => {
     try {
       const response = await axios.get(
-        `${backendUrl}/api/invoices/all`
+         backendUrl + "/api/invoices/all"
       );
       setInvoices(response.data);
     } catch (err) {
@@ -38,9 +38,8 @@ const PastInvoices = () => {
     setIsLoading(true);
     try {
       const response = await axios.delete(
-        `${
-          import.meta.env.VITE_APP_BACKEND_URL
-        }/api/invoices/${selectedInvoiceId}`
+        backendUrl + "/api/invoices/",
+       { selectedInvoiceId}
       );
       setInvoices((prevInvoices) =>
         prevInvoices.filter((invoice) => invoice._id !== selectedInvoiceId)
