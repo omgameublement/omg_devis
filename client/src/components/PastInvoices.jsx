@@ -18,16 +18,16 @@ const PastInvoices = () => {
     fetchInvoices();
   }, []);
 
-  const fetchInvoices = async () => {
-    try {
-      const response = await axios.get(
-         backendUrl + "/api/invoices/all"
-      );
-      setInvoices(response.data);
-    } catch (err) {
-      console.error("Failed to fetch invoices", err);
-    }
-  };
+  
+const fetchInvoices = async () => {
+  try {
+    const response = await axios.get(`${backendUrl}/api/invoices/all`);
+    setInvoices(response.data);
+  } catch (err) {
+    console.error("Failed to fetch invoices", err);
+  }
+};
+
 
   const confirmDeleteInvoice = (invoiceId) => {
     setSelectedInvoiceId(invoiceId);
