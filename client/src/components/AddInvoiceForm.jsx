@@ -50,7 +50,7 @@ const AddInvoiceForm = ({ onInvoiceSaved }) => {
       const invoice = { ...formData, total: total + taxAmount };
       const response = await axios.post(
         backendUrl + "/api/invoices/add",
-        {invoice}
+        invoice
       );
       console.log(response);
       onInvoiceSaved(response.data);
